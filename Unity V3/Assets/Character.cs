@@ -24,6 +24,8 @@ public class Character : MonoBehaviour
 	public bool canDraw = true;
 	public float offsetMove;
 	public bool moving;
+	private float clockAttack = 0;
+	private float timeToAttack;
 	
 	//private Texture2D texture = Resources.Load("rouge.gif") as Texture2D; 
 	
@@ -43,6 +45,7 @@ public class Character : MonoBehaviour
 	
 	void Start ()
 	{
+		timeToAttack = 2.0f;
 		moving = false;
 		offsetMove = 10.0f;
 		myTransformPosition = new GameObject().transform;
@@ -153,6 +156,8 @@ public class Character : MonoBehaviour
 		}*/
 		
 		//Debug.Log("My mind : " + mind);
+
+		clockAttack += Time.deltaTime;
 		
 		Vector3 pos = transform.position;
 		
@@ -182,8 +187,11 @@ public class Character : MonoBehaviour
 		{		
 			moving = true;
 
-			//Debug.Log("Et 1 DAMAGE dans ta **** !");
-			killTarget = scriptPath.target.GetComponentInChildren<CharacterLITE>().Damage(0.1f);
+			if(clockAttack > timeToAttack){
+				//Debug.Log("JE TABASSE !");
+				killTarget = scriptPath.target.GetComponentInChildren<CharacterLITE>().Damage(15.0f);
+				clockAttack = 0;
+			}
 			
 			/*if(nearEnnemi > 0 && lastCol != null) {
 				scriptPath.target = lastCol.gameObject.transform;

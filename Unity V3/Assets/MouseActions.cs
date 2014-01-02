@@ -21,13 +21,14 @@ public class MouseActions : MonoBehaviour
 	{
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
-		if(Physics.Raycast(ray, out hit, Mathf.Infinity, selectLayer)){
+		if(Physics.Raycast(ray, out hit, Mathf.Infinity)){
 
 			if(Input.GetMouseButtonDown(0))
 			{
 				mouseDownPoint = hit.point;
 			}
 
+			// On effectue un clique gauche
 			if(Input.GetMouseButtonUp(0) && DidUserClickLeftMouse(mouseDownPoint))
 			{
 				Debug.Log("Name ====> " + hit.collider.name + " Tag => " + hit.collider.tag);
@@ -50,17 +51,10 @@ public class MouseActions : MonoBehaviour
 						CurrentlySelectedUnit = hit.collider.transform.gameObject;
 					//}
 				}
-//				else {
-//					Debug.Log ("DESELECTION ! ");
-//					//DeselectSelectedObject();
-//				}
-			}
-
-		} else {
-			if(Input.GetMouseButtonUp(0) && DidUserClickLeftMouse(mouseDownPoint))
-			{
-				Debug.Log ("DESELECTION ! ");
-				DeselectSelectedObject();
+				else {
+					Debug.Log ("DESELECTION ! ");
+					DeselectSelectedObject();
+				}
 			}
 
 			// On effectue un clique droit
@@ -74,7 +68,7 @@ public class MouseActions : MonoBehaviour
 						{
 							Debug.Log("GO HERE AND PUT THE BANANA DOWN ! ");
 							Character ch = CurrentlySelectedUnit.GetComponentInChildren<Character>();
-
+							
 							ch.stayAt.x = hit.point.x;
 							ch.stayAt.z = hit.point.z;
 							ch.myTransformPosition.position = ch.stayAt;
@@ -82,6 +76,13 @@ public class MouseActions : MonoBehaviour
 						}
 					}
 				}
+			}
+
+		} else {
+			if(Input.GetMouseButtonUp(0) && DidUserClickLeftMouse(mouseDownPoint))
+			{
+				Debug.Log ("DESELECTION ! ");
+				DeselectSelectedObject();
 			}
 		}
 
@@ -107,6 +108,7 @@ public class MouseActions : MonoBehaviour
 		{
 			Character ch = CurrentlySelectedUnit.GetComponentInChildren<Character>();
 			ch.SetColor(Color.green);
+			CurrentlySelectedUnit = null;
 		}
 	}
 
