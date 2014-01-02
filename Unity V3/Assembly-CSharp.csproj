@@ -110,6 +110,10 @@
      <Compile Include="Assets\CameraMove.cs" />
      <Compile Include="Assets\Character.cs" />
      <Compile Include="Assets\CharacterLITE.cs" />
+     <Compile Include="Assets\Chest.cs" />
+     <Compile Include="Assets\Data.cs" />
+     <Compile Include="Assets\Ennemi.cs" />
+     <Compile Include="Assets\Friend.cs" />
      <Compile Include="Assets\MouseActions.cs" />
      <Compile Include="Assets\Movement.cs" />
      <Compile Include="Assets\ObjectPlacer.cs" />

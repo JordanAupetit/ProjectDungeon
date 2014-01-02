@@ -66,7 +66,7 @@ public class MouseActions : MonoBehaviour
 						// Si on fait un clique sur le sol, alors on change la position de "Stand By" du character
 						if(hit.collider.name == "Ground")
 						{
-							Debug.Log("GO HERE AND PUT THE BANANA DOWN ! ");
+							//Debug.Log("GO HERE AND PUT THE BANANA DOWN ! ");
 							Character ch = CurrentlySelectedUnit.GetComponentInChildren<Character>();
 							
 							ch.stayAt.x = hit.point.x;

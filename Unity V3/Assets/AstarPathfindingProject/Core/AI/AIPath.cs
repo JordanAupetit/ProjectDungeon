@@ -127,6 +127,17 @@ public class AIPath : MonoBehaviour {
 	
 	/** Only when the previous path has been returned should be search for a new path */
 	protected bool canSearchAgain = true;
+
+
+	// ===========================
+
+	//protected bool blockYaxis = true;
+	//protected float Yaxis = 1.1f;
+
+	// ===========================
+
+
+
 	
 	/** Returns if the end-of-path has been reached
 	 * \see targetReached */
@@ -307,6 +318,9 @@ public class AIPath : MonoBehaviour {
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());
+
+		/*if(blockYaxis)
+			dir.y = Yaxis;*/
 		
 		//Rotate towards targetDirection (filled in by CalculateVelocity)
 		if (targetDirection != Vector3.zero) {
