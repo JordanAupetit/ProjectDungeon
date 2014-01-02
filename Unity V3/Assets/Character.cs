@@ -19,9 +19,11 @@ public class Character : MonoBehaviour
 	private Stack<GameObject> mind = new Stack<GameObject>();
 	bool killTarget;
 	private Collider lastCol;
-	public Vector3 myPosition;
-	private Transform myTransformPosition;
+	public Vector3 stayAt;
+	public Transform myTransformPosition;
 	public bool canDraw = true;
+	public float offsetMove;
+	public bool moving;
 	
 	//private Texture2D texture = Resources.Load("rouge.gif") as Texture2D; 
 	
@@ -41,8 +43,10 @@ public class Character : MonoBehaviour
 	
 	void Start ()
 	{
+		moving = false;
+		offsetMove = 10.0f;
 		myTransformPosition = new GameObject().transform;
-		myTransformPosition.position = myPosition;
+		myTransformPosition.position = stayAt;
 		
 		Debug.Log ("Ma Target est : " + target);
 		
@@ -76,9 +80,9 @@ public class Character : MonoBehaviour
 	void OnTriggerEnter (Collider col)
     {
 		if(col.tag == "EnnemiTAG") {
-			Debug.Log ("Trig ENTER : " + col + " Tag : " + col.tag);
-			renderer.material.color = Color.red;
-			nearEnnemi++;
+			//Debug.Log ("Trig ENTER : " + col + " Tag : " + col.tag);
+			//renderer.material.color = Color.red;
+			//nearEnnemi++;
 			
 			//Debug.Log ("Test Stack : " + mind.Peek() + " Count : " + mind.Count);
 			
@@ -91,23 +95,23 @@ public class Character : MonoBehaviour
 		}
     }
 	
-	void OnTriggerStay (Collider col)
+	/*void OnTriggerStay (Collider col)
 	{
 		if(col.tag == "EnnemiTAG") {
 			lastCol = col;
 		}
-	}
+	}*/
 	
-	void OnTriggerExit (Collider col)
+	/*void OnTriggerExit (Collider col)
     {
 		if(col.tag == "EnnemiTAG") {
-			Debug.Log ("Trig EXIT : " + col + " Tag : " + col.tag);
-			nearEnnemi--;
+			//Debug.Log ("Trig EXIT : " + col + " Tag : " + col.tag);
+			//nearEnnemi--;
 			
-			if(nearEnnemi <= 0)
-				renderer.material.color = Color.green;
+			//if(nearEnnemi <= 0)
+			//	renderer.material.color = Color.green;
 		}
-	}
+	}*/
 	
 	public bool Damage (float dmg) 
 	{
@@ -129,6 +133,14 @@ public class Character : MonoBehaviour
 	{
 		renderer.material.color = col;
 	}
+
+	void OnDrawGizmos(){
+		if (scriptPath != null && scriptPath.target != null && scriptPath.target.tag == "EnnemiTAG")
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawLine (transform.position, scriptPath.target.position);
+		}
+	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -146,17 +158,30 @@ public class Character : MonoBehaviour
 		
 		lifeCapsule.transform.position = new Vector3(pos.x, pos.y + 2, pos.z);
 		lifeCapsule.transform.localScale = new Vector3(0.5f, life / 100 + 0.1f, 0.5f);
-		
-		if(scriptPath.target == null) 
+
+		if (scriptPath != null && scriptPath.target == null) 
 		{
-			myTransformPosition.position = myPosition;
-			scriptPath.target = myTransformPosition.transform;
-			scriptPath.canSearch = true;
+			// Si le character est loin de sa position de "Stand By"
+			// on lui fait rejoindre cette position
+			if (!((pos.x < stayAt.x + offsetMove && pos.x > stayAt.x - offsetMove) &&
+			    (pos.y < stayAt.y + offsetMove && pos.y > stayAt.y - offsetMove)))
+			{
+				myTransformPosition.position = stayAt;
+				scriptPath.target = myTransformPosition.transform;
+				scriptPath.canSearch = true;
+				moving = true;
+			}
+			else // Sinon cela signifie qu'il n'est pas en mouvement
+			{
+				moving = false;
+			}
 		}
 		
 		
-		if (scriptPath.target != null && scriptPath.target.tag == "EnnemiTAG")
+		if (scriptPath != null && scriptPath.target != null && scriptPath.target.tag == "EnnemiTAG")
 		{		
+			moving = true;
+
 			//Debug.Log("Et 1 DAMAGE dans ta **** !");
 			killTarget = scriptPath.target.GetComponentInChildren<CharacterLITE>().Damage(0.1f);
 			
@@ -182,16 +207,6 @@ public class Character : MonoBehaviour
 		
 		//field_of_view.transform.position = pos;
 	}
-	
-	void OnDrawGizmos ()
-	{
-		if (scriptPath.target != null && scriptPath.target.tag == "EnnemiTAG")
-		{
-			Gizmos.color = Color.green;
-			Gizmos.DrawLine (transform.position, scriptPath.target.position);
-		}
-	}
-	
 	
 }
 
