@@ -6,12 +6,11 @@ public class Chest : MonoBehaviour
 {
 	public float income;
 	public GameObject scripts;
-
-	protected Data data;
+	public Data data;
 	
 	protected void Start ()
 	{
-		income = 0.001f;
+		income = 0.005f;
 		scripts = GameObject.Find ("World_Scripts");
 		data = scripts.GetComponent<Data>();
 	}

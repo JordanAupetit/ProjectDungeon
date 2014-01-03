@@ -111,6 +111,7 @@
      <Compile Include="Assets\Character.cs" />
      <Compile Include="Assets\CharacterLITE.cs" />
      <Compile Include="Assets\Chest.cs" />
+     <Compile Include="Assets\CreateUnit.cs" />
      <Compile Include="Assets\Data.cs" />
      <Compile Include="Assets\Ennemi.cs" />
      <Compile Include="Assets\Friend.cs" />
@@ -129,6 +130,7 @@
      <None Include="Assets\AstarPathfindingProject\Readme_upgrading.txt" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Light.shader" />
      <None Include="Assets\AstarPathfindingProject\Readme.txt" />
+     <None Include="Assets\SkeletonData\animations.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\License.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
      <None Include="Assets\AstarPathfindingProject\link.xml" />
