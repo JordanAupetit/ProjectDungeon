@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class Data : MonoBehaviour
 {
-	public float gold;
+	public static float gold;
 	private GameObject texteGO;
 	private TextMesh texte;
 
 	protected void Start ()
 	{
-		gold = 200; // Or de départ
+		gold = 1000; // Or de départ
 		texteGO = GameObject.Find ("TextGold");
 		texte = texteGO.GetComponent<TextMesh> ();
 	}

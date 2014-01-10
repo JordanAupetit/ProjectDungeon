@@ -18,6 +18,7 @@ public class Character : MonoBehaviour
 	public float offsetMove;
 	public float offsetLoot;
 	public bool moving;
+	public float loot; // Butin du personnage
 
 	protected bool killTarget;
 	protected float life = 100.0f;
@@ -51,7 +52,7 @@ public class Character : MonoBehaviour
 		timeToAttack = 2.0f;
 		moving = false;
 		offsetMove = 1.0f;
-		offsetLoot = 1.0f;
+		offsetLoot = 2.0f;
 		myTransformPosition = new GameObject().transform;
 		myTransformPosition.position = stayAt;
 		
@@ -83,12 +84,19 @@ public class Character : MonoBehaviour
 		}
     }
 	
-	public bool Damage (float dmg) 
+	public bool Damage (float dmg, Character attacker) 
 	{
 		life -= dmg;
 		
 		if(life <= 0)
 		{
+			if(tagToAttack == "FriendlyTAG") {
+				Data.gold += this.loot;
+				Debug.Log ("JE MEURT et je donne mes gold : " + this.loot);
+			} else if(tagToAttack == "EnnemiTAG") {
+				attacker.loot += this.loot;
+			}
+
 			Destroy(lifeCapsule);
 			Destroy(parentGO);
 			Destroy(gameObject);
@@ -132,9 +140,9 @@ public class Character : MonoBehaviour
 				//Debug.Log("JE TABASSE !");
 
 				if(tagToAttack == "FriendlyTAG") {
-					killTarget = scriptPath.target.GetComponentInChildren<Friend>().Damage(damage);
+					killTarget = scriptPath.target.GetComponentInChildren<Friend>().Damage(damage, this);
 				} else if(tagToAttack == "EnnemiTAG") {
-					killTarget = scriptPath.target.GetComponentInChildren<Ennemi>().Damage(damage);
+					killTarget = scriptPath.target.GetComponentInChildren<Ennemi>().Damage(damage, this);
 				}
 
 				if(killTarget)

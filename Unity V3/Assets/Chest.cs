@@ -5,19 +5,21 @@ using System.Collections.Generic;
 public class Chest : MonoBehaviour
 {
 	public float income;
-	public GameObject scripts;
-	public Data data;
+	//public GameObject scripts;
+	//public Data data;
+	public float loot;
 	
 	protected void Start ()
 	{
 		income = 0.005f;
-		scripts = GameObject.Find ("World_Scripts");
-		data = scripts.GetComponent<Data>();
+		//scripts = GameObject.Find ("World_Scripts");
+		//data = scripts.GetComponent<Data>();
+		loot = 300.0f;
 	}
 	
 	protected void Update ()
 	{
-		data.gold += income;
+		Data.gold += income;
 	}
 	
 }

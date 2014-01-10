@@ -11,6 +11,7 @@ public class Friend : Character
 		tagToAttack = "EnnemiTAG";
 		colorGizmoTarget = Color.blue;
 		damage = 25.0f;
+		loot = 0;
 	}
 	
 	protected override void Update ()
