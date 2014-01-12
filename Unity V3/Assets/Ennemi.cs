@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Ennemi : Character
 {
 	private GameObject[] chests;
+	private Transform chestTransformPosition;
+	private GameObject ennemiBase;
 
 	protected override void Start ()
 	{
@@ -14,6 +16,7 @@ public class Ennemi : Character
 		colorGizmoTarget = Color.red;
 		damage = 15.0f;
 		loot = 75.0f;
+		ennemiBase = GameObject.Find ("EnnemiBase");
 
 		//chests = GameObject.FindGameObjectsWithTag ("ChestTAG");
 	}
@@ -27,7 +30,7 @@ public class Ennemi : Character
 
 		// Si on se dirige vers une "Cible" mais quelle n'existe plus
 		if (scriptPath.target != null && target == null) {
-			Debug.Log ("Ma cible est DETRUITE");
+			//Debug.Log ("Ma cible est DETRUITE");
 			scriptPath.target = null;
 		}
 			
@@ -35,7 +38,7 @@ public class Ennemi : Character
 		if (scriptPath.target == null) {
 
 			// ============================
-			// Systeme a MODIFIER !!! <<<<<
+			// Systeme a REVOIR !!! <<<<<
 
 			foreach(GameObject chest in chests){
 				if(chest != null) {
@@ -44,8 +47,9 @@ public class Ennemi : Character
 					if(chest.transform == null)
 						break;
 
-					myTransformPosition.position = chest.transform.position;
-					scriptPath.target = myTransformPosition.transform;
+					//chestTransformPosition.position = chest.transform.position;
+					//scriptPath.target = myTransformPosition.transform;
+					scriptPath.target = chest.transform;
 					scriptPath.target.tag = chest.tag;
 					scriptPath.canSearch = true;
 					target = chest;
@@ -55,11 +59,11 @@ public class Ennemi : Character
 			}
 
 			if(chests.Length <= 0) {
-				myTransformPosition.position = stayAt;
+				//Debug.Log ("On rentre a la MAISON");
+				myTransformPosition.position = ennemiBase.transform.position;
 				scriptPath.target = myTransformPosition.transform;
 				scriptPath.canSearch = true;
 				target = null;
-				Debug.Log ("On rentre a la MAISON");
 			}
 				
 		}
@@ -68,7 +72,7 @@ public class Ennemi : Character
 
 		// Si on a un coffre en Target
 		if(scriptPath.target != null  && scriptPath.target.tag == "ChestTAG") { 
-			Debug.Log ("2# Le coffre est a porte mon capitaine ! => " + scriptPath.target.position + " Et nous : " + pos);
+			//Debug.Log ("2# Le coffre est a porte mon capitaine ! => " + scriptPath.target.position + " Et nous : " + pos);
 			
 			// Si le coffre est proche
 			if ((pos.x < scriptPath.target.position.x + offsetLoot && pos.x > scriptPath.target.position.x - offsetLoot) &&

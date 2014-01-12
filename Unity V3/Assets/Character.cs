@@ -21,7 +21,8 @@ public class Character : MonoBehaviour
 	public float loot; // Butin du personnage
 
 	protected bool killTarget;
-	protected float life = 100.0f;
+	protected float lifeMax;
+	protected float life;
 	protected GameObject lifeCapsule;
 	protected GameObject parentGO;
 	protected AIPath scriptPath;
@@ -32,6 +33,8 @@ public class Character : MonoBehaviour
 	protected Color colorGizmoTarget;
 	protected float damage;
 	protected Vector3 pos;
+	protected bool mustAttack;
+	protected float lifeToBack; // 10 => Back at 10% of life || 50 Back at 50% of life
 	
 	protected class LifeCapsule
 	{
@@ -52,7 +55,7 @@ public class Character : MonoBehaviour
 		timeToAttack = 2.0f;
 		moving = false;
 		offsetMove = 1.0f;
-		offsetLoot = 2.0f;
+		offsetLoot = 2.5f;
 		myTransformPosition = new GameObject().transform;
 		myTransformPosition.position = stayAt;
 		
@@ -64,6 +67,10 @@ public class Character : MonoBehaviour
 		//Debug.Log ("Mon parent est : " + parentGO.name + " Target : " + scriptPath.target);
 
 		renderer.material.color = myColor;
+		mustAttack = true;
+		lifeToBack = 50;
+		life = 100.0f;
+		lifeMax = 100.0f;
 		
 		Vector3 pos = transform.position;
 		
@@ -78,7 +85,7 @@ public class Character : MonoBehaviour
 		if(tagToAttack == "FriendlyTAG")
 			Debug.Log ("ON A PAS ENCORE UNE CIBLE!");*/
 		
-		if(col.tag == tagToAttack) {
+		if(col.tag == tagToAttack && mustAttack) {
 			scriptPath.target = col.gameObject.transform;
 			scriptPath.canSearch = true;
 		}
@@ -87,6 +94,14 @@ public class Character : MonoBehaviour
 	public bool Damage (float dmg, Character attacker) 
 	{
 		life -= dmg;
+
+		// Si la vie est < à la limite de Fuite
+		if (life < (lifeMax * lifeToBack / 100)) {
+			mustAttack = false;
+			scriptPath.target = null;
+		} else {
+			mustAttack = true;
+		}
 		
 		if(life <= 0)
 		{

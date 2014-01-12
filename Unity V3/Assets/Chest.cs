@@ -11,7 +11,7 @@ public class Chest : MonoBehaviour
 	
 	protected void Start ()
 	{
-		income = 0.005f;
+		income = 0.02f;
 		//scripts = GameObject.Find ("World_Scripts");
 		//data = scripts.GetComponent<Data>();
 		loot = 300.0f;

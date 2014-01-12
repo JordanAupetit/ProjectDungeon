@@ -5,22 +5,21 @@ using System.Collections.Generic;
 public class Data : MonoBehaviour
 {
 	public static float gold;
-	private GameObject texteGO;
-	private TextMesh texte;
 
 	protected void Start ()
 	{
 		gold = 1000; // Or de départ
-		texteGO = GameObject.Find ("TextGold");
-		texte = texteGO.GetComponent<TextMesh> ();
 	}
 	
 	protected void Update ()
 	{
-		//Debug.Log ("Nous avons " + gold + " gold");
-		texte.text = "Gold : " + (int)gold;
+		// rien
 	}
-	
+
+	void OnGUI() {
+		GUI.Box(new Rect (5, 5, 80, 30), "");
+		GUI.Label(new Rect (10, 10, 70, 20), "Gold : " + (int)gold);
+	}
 }
 
 

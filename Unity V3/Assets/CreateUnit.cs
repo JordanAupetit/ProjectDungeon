@@ -31,7 +31,8 @@ public class CreateUnit : MonoBehaviour {
 
 		//scripts = GameObject.Find ("World_Scripts");
 		//data = scripts.GetComponent<Data>();
-		timeIntervalToSpawn = 10.0f; // On crée une unité à chacun de ces intervalles
+
+		timeIntervalToSpawn = 20.0f; // On crée une unité à chacun de ces intervalles
 	}
 	
 	// Update is called once per frame
@@ -55,7 +56,7 @@ public class CreateUnit : MonoBehaviour {
 
 		if (clockToSpawn >= timeIntervalToSpawn) {
 			if(ennemiCopy != null) {
-				//PlaceObject (ennemiCopy, posEnnemiBase);
+				PlaceObject (ennemiCopy, posEnnemiBase);
 				Debug.Log ("Ennemi Created");
 				clockToSpawn = 0;
 			}
@@ -102,6 +103,7 @@ public class CreateUnit : MonoBehaviour {
 				if(chestCopy != null && chestFound == false) {
 					PlaceObject (chestCopy, chestBase.transform.position);
 					chests = GameObject.FindGameObjectsWithTag ("ChestTAG");
+					break;
 				}
 			}
 		}
