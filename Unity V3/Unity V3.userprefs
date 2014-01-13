@@ -1,14 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Character.cs">
     <Files>
-      <File FileName="Assets\Ennemi.cs" Line="74" Column="6" />
-      <File FileName="Assets\Character.cs" Line="104" Column="1" />
-      <File FileName="Assets\Friend.cs" Line="1" Column="1" />
-      <File FileName="Assets\MouseActions.cs" Line="1" Column="1" />
-      <File FileName="Assets\Data.cs" Line="21" Column="37" />
-      <File FileName="Assets\Chest.cs" Line="14" Column="16" />
-      <File FileName="Assets\CreateUnit.cs" Line="67" Column="63" />
+      <File FileName="Assets\Ennemi.cs" Line="47" Column="8" />
+      <File FileName="Assets\Character.cs" Line="156" Column="5" />
+      <File FileName="Assets\Friend.cs" Line="40" Column="4" />
+      <File FileName="Assets\Data.cs" Line="33" Column="7" />
+      <File FileName="Assets\CreateUnit.cs" Line="38" Column="36" />
+      <File FileName="Assets\Chest.cs" Line="22" Column="33" />
+      <File FileName="Assets\MouseActions.cs" Line="24" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

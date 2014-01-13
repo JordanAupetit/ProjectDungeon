@@ -38,6 +38,8 @@ public class CreateUnit : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 
+		if (Data.isPaused) { return; }
+
 		clockToSpawn += Time.deltaTime;
 
 		if (Input.GetKeyDown ("e")) {
@@ -61,10 +63,11 @@ public class CreateUnit : MonoBehaviour {
 				clockToSpawn = 0;
 			}
 		}
+
 	}
 
 	void OnGUI() {
-		if (GUI.Button (new Rect (10, (Screen.height - 40), 150, 30), "Soldat (100) / Press E")) {
+		if (GUI.Button (new Rect (10, (Screen.height - 40), 150, 30), "Soldat (100) / Press E") && !Data.isPaused) {
 			if(friendCopy != null) {
 				
 				if(Data.gold > 100.0f) { // COUT à modifier <<<<<<<<
@@ -78,7 +81,7 @@ public class CreateUnit : MonoBehaviour {
 			}
 		}
 
-		if (GUI.Button (new Rect (170, (Screen.height - 40), 80, 30), "Chest (300)")) {
+		if (GUI.Button (new Rect (170, (Screen.height - 40), 80, 30), "Chest (400)") && !Data.isPaused) {
 			chests = GameObject.FindGameObjectsWithTag ("ChestTAG");
 			bool chestFound;
 
@@ -101,12 +104,23 @@ public class CreateUnit : MonoBehaviour {
 
 				// On crée le Chest
 				if(chestCopy != null && chestFound == false) {
-					PlaceObject (chestCopy, chestBase.transform.position);
+					if(Data.gold > 400.0f) { // COUT à modifier <<<<<<<<
+						Data.gold -= 400.0f;
+						PlaceObject (chestCopy, chestBase.transform.position);
+						chests = GameObject.FindGameObjectsWithTag ("ChestTAG");
+						Debug.Log ("Chest Created");
+					}
+					else {
+						Debug.Log ("Can't Create Chest");
+					}
+
 					chests = GameObject.FindGameObjectsWithTag ("ChestTAG");
 					break;
 				}
 			}
 		}
+
+
 	}
 	
 	public void PlaceObject (GameObject go, Vector3 pos) {

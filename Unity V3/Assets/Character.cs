@@ -131,7 +131,7 @@ public class Character : MonoBehaviour
 		if (scriptPath != null && scriptPath.target != null && scriptPath.target.tag == tagToAttack)
 		{
 			Gizmos.color = colorGizmoTarget;
-			Gizmos.DrawLine (transform.position, scriptPath.target.position);
+			//Gizmos.DrawLine (transform.position, scriptPath.target.position);
 		}
 	}
 	
@@ -150,6 +150,11 @@ public class Character : MonoBehaviour
 		if (scriptPath != null && scriptPath.target != null && scriptPath.target.tag == tagToAttack)
 		{		
 			moving = true;
+
+			if(tagToAttack == "EnnemiTAG") {
+				//Debug.Log ("DRAWLINE => to " + transform.position + " at " + scriptPath.target.position);
+				Debug.DrawLine(transform.position, scriptPath.target.position, Color.cyan);
+			}
 
 			if(clockAttack > timeToAttack){
 				//Debug.Log("JE TABASSE !");

@@ -23,6 +23,8 @@ public class Ennemi : Character
 	
 	protected override void Update ()
 	{
+		if (Data.isPaused) { return; }
+			
 		base.Update ();
 
 		// Faire attention, c'est une opération qui Peut etre Lourde <<<
@@ -42,7 +44,7 @@ public class Ennemi : Character
 
 			foreach(GameObject chest in chests){
 				if(chest != null) {
-					Debug.Log ("GO CHEST");
+					//Debug.Log ("GO CHEST");
 
 					if(chest.transform == null)
 						break;
@@ -78,14 +80,13 @@ public class Ennemi : Character
 			if ((pos.x < scriptPath.target.position.x + offsetLoot && pos.x > scriptPath.target.position.x - offsetLoot) &&
 			    (pos.z < scriptPath.target.position.z + offsetLoot && pos.z > scriptPath.target.position.z - offsetLoot))
 			{
-				Debug.Log ("Le coffre est a porte mon capitaine ! => " + scriptPath.target.position + " Et nous : " + pos);
+				//Debug.Log ("Le coffre est a porte mon capitaine ! => " + scriptPath.target.position + " Et nous : " + pos);
 				scriptPath.target = null;
 				//loot += target.GetComponent<Chest>().loot;
 				Destroy(target);
 			}
 		}
 	}
-	
 }
 
 

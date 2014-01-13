@@ -16,6 +16,8 @@ public class Friend : Character
 	
 	protected override void Update ()
 	{
+		if (Data.isPaused) { return; }
+
 		base.Update ();
 
 		// Si une de vos unités est loin de sa position de "Stand By"

@@ -34,6 +34,8 @@ public class WorldCamera : MonoBehaviour {
 	private float cameraMoveSpeed = 60f;
 	private float shiftBonus      = 45f;
 	private float mouseBoundary   = 25f;
+
+	private bool mouseMovement;
 	
 	#endregion
 	
@@ -58,6 +60,7 @@ public class WorldCamera : MonoBehaviour {
 		mouseScrollLimits.TopLimit    = mouseBoundary;
 		mouseScrollLimits.BottomLimit = mouseBoundary;
 
+		mouseMovement = false;
 	}
 	
 	
@@ -140,22 +143,25 @@ public class WorldCamera : MonoBehaviour {
 		
 		
 
-		
+
+
 		//move via mouse
-		if(Input.mousePosition.x < mouseScrollLimits.LeftLimit){
-			desiredX = moveSpeed * -1;
-		}
-		
-		if(Input.mousePosition.x > (Screen.width - mouseScrollLimits.RightLimit)){
-			desiredX = moveSpeed;
-		}
-		
-		if(Input.mousePosition.y < mouseScrollLimits.BottomLimit){
-			desiredZ = moveSpeed * -1;
-		}
-		
-		if(Input.mousePosition.y > (Screen.height - mouseScrollLimits.TopLimit)){
-			desiredZ = moveSpeed;
+		if (mouseMovement) {
+			if(Input.mousePosition.x < mouseScrollLimits.LeftLimit){
+				desiredX = moveSpeed * -1;
+			}
+			
+			if(Input.mousePosition.x > (Screen.width - mouseScrollLimits.RightLimit)){
+				desiredX = moveSpeed;
+			}
+			
+			if(Input.mousePosition.y < mouseScrollLimits.BottomLimit){
+				desiredZ = moveSpeed * -1;
+			}
+			
+			if(Input.mousePosition.y > (Screen.height - mouseScrollLimits.TopLimit)){
+				desiredZ = moveSpeed;
+			}
 		}
 			
 		return new Vector3(desiredX, 0, desiredZ);

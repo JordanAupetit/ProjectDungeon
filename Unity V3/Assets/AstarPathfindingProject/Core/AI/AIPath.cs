@@ -316,6 +316,7 @@ public class AIPath : MonoBehaviour {
 	public virtual void Update () {
 		
 		if (!canMove) { return; }
+		if (Data.isPaused) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());
 
