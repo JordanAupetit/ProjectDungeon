@@ -78,6 +78,7 @@ public class MouseActions : MonoBehaviour
 							ch.scriptPath.target = ch.myTransformPosition.transform;
 							ch.scriptPath.canSearch = true;
 							//ch.scriptPath.target = null;
+							ch.golemAnimator.SetBool("moving", true);
 
 							fr.moving = true;
 						}

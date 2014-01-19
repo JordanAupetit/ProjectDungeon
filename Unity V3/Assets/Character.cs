@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
 	public float offsetLoot;
 	public float loot; 			// Butin du personnage
 	public AIPath scriptPath;
+	public Animator golemAnimator;
 
 	protected bool killTarget;
 	protected float lifeMax;
