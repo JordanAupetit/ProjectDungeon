@@ -29,7 +29,7 @@ public class MouseActions : MonoBehaviour
 			}
 
 			// On effectue un clique gauche
-			if(Input.GetMouseButtonUp(0) && DidUserClickLeftMouse(mouseDownPoint))
+			if(Input.GetMouseButtonUp(0) && DidUserClickMouse(mouseDownPoint))
 			{
 				Debug.Log("Name ====> " + hit.collider.name + " Tag => " + hit.collider.tag);
 				
@@ -58,7 +58,7 @@ public class MouseActions : MonoBehaviour
 			}
 
 			// On effectue un clique droit
-			if(Input.GetMouseButtonUp(1) && DidUserClickLeftMouse(mouseDownPoint))
+			if(Input.GetMouseButtonUp(1) && DidUserClickMouse(mouseDownPoint))
 			{
 				if(CurrentlySelectedUnit != null){
 					if(Physics.Raycast(ray, out hit, Mathf.Infinity)){
@@ -67,19 +67,30 @@ public class MouseActions : MonoBehaviour
 						if(hit.collider.name == "Ground")
 						{
 							//Debug.Log("GO HERE AND PUT THE BANANA DOWN ! ");
+
+							// Ces deux GETs sont peut etre un peur lourd, eventuellement Optimiser <<< TO-DO
 							Character ch = CurrentlySelectedUnit.GetComponentInChildren<Character>();
+							Friend fr = ch.GetComponentInChildren<Friend>();
 							
 							ch.stayAt.x = hit.point.x;
 							ch.stayAt.z = hit.point.z;
 							ch.myTransformPosition.position = ch.stayAt;
-							ch.moving = true;
+							ch.scriptPath.target = ch.myTransformPosition.transform;
+							ch.scriptPath.canSearch = true;
+							//ch.scriptPath.target = null;
+
+							fr.moving = true;
 						}
+
+						// SI HIT COLLIDER EST UN ENNEMI
+
+						// TO-DO <<<<<<
 					}
 				}
 			}
 
 		} else {
-			if(Input.GetMouseButtonUp(0) && DidUserClickLeftMouse(mouseDownPoint))
+			if(Input.GetMouseButtonUp(0) && DidUserClickMouse(mouseDownPoint))
 			{
 				Debug.Log ("DESELECTION ! ");
 				DeselectSelectedObject();
@@ -90,7 +101,7 @@ public class MouseActions : MonoBehaviour
 	}
 
 
-	public bool DidUserClickLeftMouse(Vector3 hitPoint)
+	public bool DidUserClickMouse(Vector3 hitPoint)
 	{
 		float clickZone = 1.3f;
 

@@ -32,7 +32,7 @@ public class CreateUnit : MonoBehaviour {
 		//scripts = GameObject.Find ("World_Scripts");
 		//data = scripts.GetComponent<Data>();
 
-		timeIntervalToSpawn = 5.0f; // On crée une unité à chacun de ces intervalles
+		timeIntervalToSpawn = 20.0f; // On crée une unité à chacun de ces intervalles
 	}
 	
 	// Update is called once per frame

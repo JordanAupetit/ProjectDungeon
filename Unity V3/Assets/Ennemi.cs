@@ -14,7 +14,7 @@ public class Ennemi : Character
 
 		tagToAttack = "FriendlyTAG";
 		colorGizmoTarget = Color.red;
-		damage = 15.0f;
+		damage = 3.0f;
 		loot = 75.0f;
 		ennemiBase = GameObject.Find ("EnnemiBase");
 
@@ -26,6 +26,14 @@ public class Ennemi : Character
 		if (Data.isPaused) { return; }
 			
 		base.Update ();
+
+		// Si la vie est < à la limite de Fuite
+		if (life < (lifeMax * lifeToBack / 100)) {
+			mustAttack = false;
+			scriptPath.target = null;
+		} else {
+			mustAttack = true;
+		}
 
 		// Faire attention, c'est une opération qui Peut etre Lourde <<<
 		chests = GameObject.FindGameObjectsWithTag ("ChestTAG");
