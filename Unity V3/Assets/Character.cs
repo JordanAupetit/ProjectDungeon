@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
 	public float offsetLoot;
 	public float loot; 			// Butin du personnage
 	public AIPath scriptPath;
-	public Animator golemAnimator;
+	public Animator animator;
 
 	protected bool killTarget;
 	protected float lifeMax;
@@ -45,10 +45,11 @@ public class Character : MonoBehaviour
 		public LifeCapsule(Vector3 pos)
 		{
 			lifeC = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-			lifeC.transform.position = new Vector3(pos.x, pos.y + 2, pos.z);
+			lifeC.transform.position = new Vector3(pos.x, pos.y + 3, pos.z);
 			lifeC.transform.localScale = new Vector3(0.5f, 1.1f, 0.5f);
 			lifeC.transform.Rotate(0, 0, 90);
 			lifeC.renderer.material.color = Color.red;
+			lifeC.layer = 12;
 		}
 	}
 	
@@ -148,7 +149,7 @@ public class Character : MonoBehaviour
 		// On fait défiler l'horloge qui permet de savoir quand "Attaquer"
 		clockAttack += Time.deltaTime;
 
-		lifeCapsule.transform.position = new Vector3(pos.x, pos.y + 2, pos.z);
+		lifeCapsule.transform.position = new Vector3(pos.x, pos.y + 3, pos.z);
 		lifeCapsule.transform.localScale = new Vector3(0.5f, life / 100 + 0.1f, 0.5f);
 
 		// On inflige des dégats au corps a corps

@@ -61,7 +61,7 @@ public class Friend : Character
 			else // Sinon cela signifie qu'il n'est pas en mouvement
 			{
 				moving = false;
-				golemAnimator.SetBool("moving", false);
+				animator.SetBool("moving", false);
 				//Debug.Log ("STAND BY MEC !");
 			}
 		}

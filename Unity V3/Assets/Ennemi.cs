@@ -7,6 +7,7 @@ public class Ennemi : Character
 	private GameObject[] chests;
 	private Transform chestTransformPosition;
 	private GameObject ennemiBase;
+	public AudioClip pikeChestClip; // FOR TEST -- to remove
 
 	protected override void Start ()
 	{
@@ -92,6 +93,8 @@ public class Ennemi : Character
 				scriptPath.target = null;
 				//loot += target.GetComponent<Chest>().loot;
 				Destroy(target);
+
+				AudioSource.PlayClipAtPoint(pikeChestClip, transform.position, 0.3f);
 			}
 		}
 	}
