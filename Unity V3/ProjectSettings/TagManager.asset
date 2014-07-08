@@ -7,8 +7,9 @@ TagManager:
   - FriendlyTAG
   - ChestTAG
   - ChestBaseTAG
-  - 
-  - 
+  - FriendlyBaseTAG
+  - EnemyBaseTAG
+  - RoomTAG
   - 
   - 
   - 
