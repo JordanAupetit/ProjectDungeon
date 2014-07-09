@@ -13,9 +13,9 @@ public class CreateUnit : MonoBehaviour {
 	protected GameObject[] chests;
 	protected float offsetChest;
 
-	public GameObject friendCopy = null; 
-	public GameObject ennemiCopy = null;
-	public GameObject chestCopy = null;
+	public GameObject friendlyPrefab = null; 
+	public GameObject enemyPrefab = null;
+	public GameObject chestPrefab = null;
 	//public Vector3 posFriendlyBase;
 	//public Vector3 posEnnemiBase;
 	//public GameObject scripts;
@@ -48,11 +48,11 @@ public class CreateUnit : MonoBehaviour {
 		clockToSpawn += Time.deltaTime;
 
 		if (Input.GetKeyDown ("e")) {
-			if(friendCopy != null) {
+			if(friendlyPrefab != null) {
 
 				if(Data.gold > 100.0f) { // COST à modifier <<<<<<<<
 					Data.gold -= 100.0f;
-					PlaceObject (friendCopy, friendlyBases[Random.Range(0,friendlyBases.Length)].transform.position);
+					PlaceObject (friendlyPrefab, friendlyBases[Random.Range(0,friendlyBases.Length)].transform.position);
 					Debug.Log ("Unit Created -- Nb Bases : " + friendlyBases.Length + " Base id : " + Random.Range(0,friendlyBases.Length));
 				}
 				else {
@@ -62,8 +62,8 @@ public class CreateUnit : MonoBehaviour {
 		}
 
 		if (clockToSpawn >= timeIntervalToSpawn) {
-			if(ennemiCopy != null) {
-				PlaceObject (ennemiCopy, enemyBases[Random.Range(0,enemyBases.Length)].transform.position);
+			if(enemyPrefab != null) {
+				PlaceObject (enemyPrefab, enemyBases[Random.Range(0,enemyBases.Length)].transform.position);
 				Debug.Log ("Ennemi Created");
 				clockToSpawn = 0;
 			}
@@ -73,11 +73,11 @@ public class CreateUnit : MonoBehaviour {
 
 	void OnGUI() {
 		if (GUI.Button (new Rect (10, (Screen.height - 40), 150, 30), "Soldat (100) / Press E") && !Data.isPaused) {
-			if(friendCopy != null) {
+			if(friendlyPrefab != null) {
 				
 				if(Data.gold > 100.0f) { // COUT à modifier <<<<<<<<
 					Data.gold -= 100.0f;
-					PlaceObject (friendCopy, friendlyBases[Random.Range(0,friendlyBases.Length)].transform.position);
+					PlaceObject (friendlyPrefab, friendlyBases[Random.Range(0,friendlyBases.Length)].transform.position);
 					Debug.Log ("Unit Created");
 				}
 				else {
@@ -108,11 +108,11 @@ public class CreateUnit : MonoBehaviour {
 				}
 
 				// On crée le Chest
-				if(chestCopy != null && chestFound == false) {
+				if(chestPrefab != null && chestFound == false) {
 					if(Data.gold > 400.0f) { // COUT à modifier <<<<<<<<
 						Data.gold -= 400.0f;
-						PlaceObject (chestCopy, chestBase.transform.position);
-						chests = GameObject.FindGameObjectsWithTag ("ChestTAG");
+						PlaceObject (chestPrefab, chestBase.transform.position);
+						// chests = GameObject.FindGameObjectsWithTag ("ChestTAG");
 						Debug.Log ("Chest Created");
 					}
 					else {

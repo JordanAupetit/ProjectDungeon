@@ -26,7 +26,7 @@ public class Generate_Dungeon : MonoBehaviour {
 			}
 		}
 
-		file_to_map ("map1.txt", ref map);
+		file_to_map ("Ressources/map1.txt", ref map);
 		Debug.Log ("File to map => OK");
 		
 
