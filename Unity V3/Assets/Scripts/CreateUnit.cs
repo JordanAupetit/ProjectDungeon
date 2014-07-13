@@ -51,7 +51,7 @@ public class CreateUnit : MonoBehaviour {
 			if(friendlyPrefab != null) {
 
 				if(Data.gold > 100.0f) { // COST à modifier <<<<<<<<
-					Data.gold -= 100.0f;
+					Data.gold -= 1.0f;
 					PlaceObject (friendlyPrefab, friendlyBases[Random.Range(0,friendlyBases.Length)].transform.position);
 					Debug.Log ("Unit Created -- Nb Bases : " + friendlyBases.Length + " Base id : " + Random.Range(0,friendlyBases.Length));
 				}

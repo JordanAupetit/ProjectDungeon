@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -23,6 +24,7 @@ public class Friend : Character
 
 	void OnTriggerStay (Collider col)
 	{
+
 		if (col.tag == tagToAttack) {
 			if (moveAndAttack || !moving) {
 				myTransformPosition.position = col.gameObject.transform.position;
@@ -42,9 +44,12 @@ public class Friend : Character
 	
 	protected override void Update ()
 	{
+		float start = Time.realtimeSinceStartup;
 		if (Data.isPaused) { return; }
 
 		base.Update ();
+
+		//Debug.Log ("1 Base : " + (Time.realtimeSinceStartup - start) * 1000);
 
 		if (scriptPath.target != null && target == null) {
 			//Debug.Log ("Ma cible est DETRUITE");
@@ -52,12 +57,14 @@ public class Friend : Character
 		}
 
 		if (scriptPath.target == null) {
-			GameObject room = rooms[Random.Range(0,rooms.Length)];
+			GameObject room = rooms[UnityEngine.Random.Range(0,rooms.Length)];
 			scriptPath.target = room.transform;
 			scriptPath.target.tag = room.tag;
 			scriptPath.canSearch = true;
 			target = room;
 		}
+
+		//Debug.Log ("1 Bis : " + (Time.realtimeSinceStartup - start) * 1000);
 
 		// Si on a une ROOM en Target
 		if(scriptPath.target != null  && scriptPath.target.tag == "RoomTAG") { 
@@ -74,6 +81,8 @@ public class Friend : Character
 				//AudioSource.PlayClipAtPoint(pikeChestClip, transform.position, 0.3f);
 			}
 		}
+
+		//Debug.Log ("2 : " + (Time.realtimeSinceStartup - start) * 1000);
 
 		// Si une de vos unités est loin de sa position de "Stand By"
 		// et qu'il n'a Pas de cible
@@ -95,6 +104,8 @@ public class Friend : Character
 				animator.SetBool("moving", false);
 			}
 		}
+
+		//Debug.Log ("3 : " + (Time.realtimeSinceStartup - start) * 1000);
 	}
 	
 }

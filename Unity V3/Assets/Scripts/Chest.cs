@@ -20,7 +20,6 @@ public class Chest : MonoBehaviour
 	protected void Update ()
 	{
 		if (Data.isPaused) { return; }
-
 		Data.gold += income;
 	}
 	

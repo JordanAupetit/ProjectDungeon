@@ -151,7 +151,7 @@ public class Character : MonoBehaviour
 
 		lifeCapsule.transform.position = new Vector3(pos.x, pos.y + 3, pos.z);
 		lifeCapsule.transform.localScale = new Vector3(0.5f, life / 100 + 0.1f, 0.5f);
-
+		
 		// On inflige des dégats au corps a corps
 		if (scriptPath != null && scriptPath.target != null && scriptPath.target.tag == tagToAttack)
 		{		

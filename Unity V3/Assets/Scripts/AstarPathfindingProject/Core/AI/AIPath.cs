@@ -322,7 +322,6 @@ public class AIPath : MonoBehaviour {
 
 		/*if(blockYaxis)
 			dir.y = Yaxis;*/
-		
 		//Rotate towards targetDirection (filled in by CalculateVelocity)
 		if (targetDirection != Vector3.zero) {
 			RotateTowards (targetDirection);
