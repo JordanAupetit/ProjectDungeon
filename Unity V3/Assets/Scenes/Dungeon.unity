@@ -7184,7 +7184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRadius: 10
-  numberOfAgents: 150
   unitPrefab: {fileID: 100000, guid: b2a00798212a03a43a96ce5edb95b6db, type: 2}
 --- !u!1 &978032929
 GameObject:
@@ -8943,6 +8942,7 @@ GameObject:
   - 114: {fileID: 1367704993}
   - 114: {fileID: 1367704994}
   - 114: {fileID: 1367704995}
+  - 114: {fileID: 1367704996}
   m_Layer: 0
   m_Name: World_Scripts
   m_TagString: Untagged
@@ -9031,6 +9031,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateInterval: .5
+--- !u!114 &1367704996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1367704989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b839db489c18b4c90148607a81e958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToSpawn: 0
+  enemyPrefab: {fileID: 100000, guid: 2ba9d6ced43835642afab48cdabb2efa, type: 2}
 --- !u!1 &1374126748
 GameObject:
   m_ObjectHideFlags: 0

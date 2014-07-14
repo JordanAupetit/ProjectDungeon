@@ -137,6 +137,7 @@
      <Compile Include="Assets\Scripts\UnitMovement.cs" />
      <Compile Include="Assets\Scripts\WorldCamera.cs" />
      <Compile Include="Assets\Scripts\fps.cs" />
+     <Compile Include="Assets\SpawnEnemy.cs" />
      <None Include="Assets\OLD\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Scripts\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\OLD\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />

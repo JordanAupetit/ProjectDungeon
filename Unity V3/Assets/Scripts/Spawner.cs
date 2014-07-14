@@ -23,9 +23,9 @@ public class Spawner : MonoBehaviour {
             GameObject o = (GameObject)Instantiate(unitPrefab, randomLoc3d, transform.rotation);
         }
     }
-
+/*
     void OnDrawGizmosSelected () {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere (transform.position, spawnRadius);
-    }
+    }*/
 }

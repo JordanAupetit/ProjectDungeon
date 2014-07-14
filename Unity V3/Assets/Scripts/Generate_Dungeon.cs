@@ -78,10 +78,10 @@ public class Generate_Dungeon : MonoBehaviour {
 				obj = Instantiate (base_prefab, new Vector3(0 + (col * 2), 1.1f, 0 - (line * 2)), Quaternion.identity) as GameObject;
 				obj.tag = "EnemyBaseTAG";
 
-				Spawner spE;
-				spE = obj.AddComponent<Spawner>();
-				spE.numberOfAgents = 20;
-				spE.unitPrefab = enemyPrefab;
+				//Spawner spE;
+				//spE = obj.AddComponent<Spawner>();
+				//spE.numberOfAgents = 20;
+				//spE.unitPrefab = enemyPrefab;
 				break;
 			case "5":	// Rooms (node)
 				obj = Instantiate (ground_prefab, new Vector3(0 + (col * 2), 0, 0 - (line * 2)), Quaternion.identity) as GameObject;
