@@ -62,7 +62,6 @@
      <None Include="Assets\Scripts\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\OLD\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Ressources\Projector Additive Shader.shader" />
-     <None Include="Assets\Ressources\map1.txt" />
      <None Include="Assets\Ressources\UnityLOS\Shaders\LOSTerrain.shader" />
      <None Include="Assets\Scripts\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
      <None Include="Assets\Scripts\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
@@ -79,6 +78,7 @@
      <None Include="Assets\Scripts\AstarPathfindingProject\Readme.txt" />
      <None Include="Assets\Ressources\UnityLOS\Shaders\Entity Transparent.shader" />
      <None Include="Assets\OLD\SkeletonData\animations.txt" />
+     <None Include="Assets\Ressources\map1.txt" />
      <None Include="Assets\Scripts\AstarPathfindingProject\Plugins\JsonFx\License.txt" />
      <None Include="Assets\Scripts\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
      <None Include="Assets\OLD\Standard Assets\Projectors\Sources\Textures\Projector Additive Shader.shader" />

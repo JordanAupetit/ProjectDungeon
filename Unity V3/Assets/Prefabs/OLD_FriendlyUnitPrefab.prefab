@@ -32,12 +32,12 @@ GameObject:
   - 143: {fileID: 14300000}
   - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: FriendlyUnitPrefab
+  m_Name: OLD_FriendlyUnitPrefab
   m_TagString: FriendlyTAG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1

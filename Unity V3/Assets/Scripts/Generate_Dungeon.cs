@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Text;
 using System.IO; 
-using Pathfinding;
+//using Pathfinding;
+using UnityEditor;
 
 public class Generate_Dungeon : MonoBehaviour {
 
@@ -13,9 +14,15 @@ public class Generate_Dungeon : MonoBehaviour {
 	public GameObject base_prefab;
 	public int max_colonnes = 400;
 	public int max_lignes = 400;
+	public bool enable = true;
 
-	// Use this for initialization
+	public GameObject friendlyPrefab;
+	public GameObject enemyPrefab;
+
 	void Awake () {
+		if (!enable)
+			return;
+			
 		Debug.Log ("Dungeon creation started!");
 
 		map = new string[max_colonnes,max_lignes];
@@ -37,13 +44,9 @@ public class Generate_Dungeon : MonoBehaviour {
 		}
 
 		Debug.Log ("Generated");
-		AstarPath.active.Scan();
+		//AstarPath.active.Scan();
+		NavMeshBuilder.BuildNavMesh();
 		Debug.Log ("Scanned");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	void instantiate_gameobject(string symbol, int col, int line){
@@ -61,6 +64,11 @@ public class Generate_Dungeon : MonoBehaviour {
 				obj.layer = 9;
 				obj = Instantiate (base_prefab, new Vector3(0 + (col * 2), 1.1f, 0 - (line * 2)), Quaternion.identity) as GameObject;
 				obj.tag = "FriendlyBaseTAG";
+
+				Spawner spF;
+				spF = obj.AddComponent<Spawner>();
+				spF.numberOfAgents = 40;
+				spF.unitPrefab = friendlyPrefab;
 				break;
 			case "3":	// Empty
 				break;
@@ -69,6 +77,11 @@ public class Generate_Dungeon : MonoBehaviour {
 				obj.layer = 9;
 				obj = Instantiate (base_prefab, new Vector3(0 + (col * 2), 1.1f, 0 - (line * 2)), Quaternion.identity) as GameObject;
 				obj.tag = "EnemyBaseTAG";
+
+				Spawner spE;
+				spE = obj.AddComponent<Spawner>();
+				spE.numberOfAgents = 20;
+				spE.unitPrefab = enemyPrefab;
 				break;
 			case "5":	// Rooms (node)
 				obj = Instantiate (ground_prefab, new Vector3(0 + (col * 2), 0, 0 - (line * 2)), Quaternion.identity) as GameObject;
@@ -109,6 +122,8 @@ public class Generate_Dungeon : MonoBehaviour {
 		string[] line_split;
 		int index_colonne = 0;
 		int index_ligne = 0;
+		int line_to_remove = 12;
+		int cpt = 0;
 		// Create a new StreamReader, tell it which file to read and what encoding the file
 		// was saved as
 		StreamReader myFile = new StreamReader(Application.dataPath + "/" + fileName, Encoding.Default);
@@ -119,9 +134,9 @@ public class Generate_Dungeon : MonoBehaviour {
 			do
 			{
 				line = myFile.ReadLine();
-				
-				if (line != null)
-				{
+
+				if ((cpt >= line_to_remove) && line != null) {
+
 					line_split = line.Split(',');
 					for(index_colonne = 0; index_colonne < line_split.Length; index_colonne++){
 						//Debug.Log ("Ligne " + index_ligne + " Colonne " + index_colonne + " taille ligne " + line_split.Length);
@@ -129,6 +144,7 @@ public class Generate_Dungeon : MonoBehaviour {
 					}
 					index_ligne++;
 				}
+				cpt++;
 			}
 			while (line != null);
 			
